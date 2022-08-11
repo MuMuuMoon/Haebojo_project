@@ -7,7 +7,7 @@ const int LOADCELL_DOUT_PIN2 = 12, LOADCELL_SCK_PIN2 = 13;
 HX711 scale, scale2;
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(115200); // 9600이면 1초에 900bytes 정도 전송 가능.
     scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
     scale2.begin(LOADCELL_DOUT_PIN2, LOADCELL_SCK_PIN2);
     
@@ -26,10 +26,10 @@ void loop() {
     long reading = scale.get_units(10);
     long reading2= scale2.get_units(10);
 
-    Serial.println((String) reading + ", " + reading2);
+    Serial.println((String) reading + ", " + reading2); // (String) 없애면 알아볼 수 없는 값 나옴.
   }
   else{
     Serial.println("hx711 connect error");
   }
-  delay(100);
+  delay(100); // sender에서 
 }

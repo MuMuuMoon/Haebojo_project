@@ -16,14 +16,6 @@ if os.path.exists(FIFO_FILENAME):
     fp_fifo.write(data)
 
     while True:
-        c = NodeMCU.readline()
+        c = NodeMCU.readline() # readlines()로 하면 입력이 끝났을 때까지 한 번에 읽어와서 무한루프로 input data 읽어오는 경우 출력 안 됨.
         data = c.decode()
         fp_fifo.write(data)
-
-# s = '0, 0'
-# print(s)
-
-# while(1):
-#     c = NodeMCU.readline()  # enter 전까지 읽어오기.
-#     s = c.decode()
-#     print(s)
