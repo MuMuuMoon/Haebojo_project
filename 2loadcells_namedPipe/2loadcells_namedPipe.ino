@@ -8,6 +8,7 @@ HX711 scale, scale2;
 
 void setup() {
     Serial.begin(115200); // 9600이면 1초에 900bytes 정도 전송 가능.
+//    Serial.begin(9600);
     scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
     scale2.begin(LOADCELL_DOUT_PIN2, LOADCELL_SCK_PIN2);
     
@@ -31,5 +32,7 @@ void loop() {
   else{
     Serial.println("hx711 connect error");
   }
-  delay(100); // sender에서 
+  delay(100); // 시간이 길어지면 receiver에서 출력되는 값이 더 많아짐. 
+              // 시리얼통신이기 때문에 직렬로 입력되는 data가 너무 빨리 들어가면 named pipe가 출력할 때 
+              // 과부하가 걸려서 자동 종료되는 원리?
 }
