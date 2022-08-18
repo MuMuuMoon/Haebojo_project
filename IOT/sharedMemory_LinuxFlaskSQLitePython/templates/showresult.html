@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>데이터베이스 예제</title>
+
+  <style type="text/css">
+	body{ text-align: center; }
+  </style>
+ </head>
+ <body>
+	<h3>테이블 목록</h3>
+	<h4>추가</h4>
+	<form action = "{{ url_for('insert') }}" method = "POST">
+		공통 키 컬럼<br>
+		<input type = "text" name ="indexPerson" /></br>
+		person item<br>
+		<input type = "text" name = "item" /></br>
+		person num<br>
+		<input type = "text" name = "num" /><br>
+		person price<br>
+		<input type = "text" name = "price" /><br>
+
+		loadcell item<br>
+		<input type = "text" name = "item2" /></br>
+		loadcell num<br>
+		<input type = "text" name = "num2" /><br>
+		loadcell price<br>
+		<input type = "text" name = "price2" /><br><br>
+		<input type = "submit" value = "추 가" /><br>
+	</form>
+	<hr>
+	<h4>사람테이블 목록</h4>
+	<table border=1 width="600" align="center">
+		<thead>
+		<td>기본키</td>
+		<td>item</td>
+		<td>num</td>
+		<td>price</td>
+		</thead>
+	{% for row in rows1 %}
+		<tr>
+			<td>{{ row["indexPerson"] }}</td>
+			<td>{{ row["item"] }}</td>
+			<td>{{ row["num"] }}</td>
+			<td>{{ row["price"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+ <h4>로드셀테이블 목록 </h4>
+	<table border=1 width="600" align="center">
+		<thead>
+		<td>기본키</td>
+		<td>item</td>
+		<td>num</td>
+		<td>price</td>
+		</thead>
+	{% for row in rows2 %}
+		<tr>
+			<td>{{ row["indexWeight"] }}</td>
+			<td>{{ row["item"] }}</td>
+			<td>{{ row["num"] }}</td>
+			<td>{{ row["price"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+ </body>
+</html>
