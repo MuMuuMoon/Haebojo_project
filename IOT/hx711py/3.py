@@ -24,6 +24,13 @@ def cleanAndExit():
         
     print("Bye!")
     sys.exit()
+    
+def stableCheck():
+    second= round(hx3.get_weight(5))
+    for i in range(0,5):
+        first= round(hx3.get_weight(5))
+        if abs(first-second)<= 200:
+            return 1
 
 hx3= HX711(22,23)
 # (dout, sck) 4,17/ 18,27/ 22,23/ 24,10
@@ -56,22 +63,16 @@ while True:
             val3_max= abs(val3-val3_before)
         if abs(val3-val3_before) < val3_min :
             val3_min= abs(val3-val3_before)
-        print("min: " + str(val3_min) + ", max: " + str(val3_max))
-
-        hx3.power_down()
-        hx3.power_up()
-        time.sleep(0.1)
+        print("min: " + str(val3_min) + ", max: " + str(val3_max))    
         
-        if abs(val3-val3_before) >= 100 :
+        if abs(val3-val3_before) >= 200 : # 물건 집음. 
             before_detection= val3_before
-            stable=0
             while True:
                 val3 = round(hx3.get_weight(5))
-                if (0 <= abs(val3-val3_before)) & (abs(val3-val3_before) <=100):
-                    stable+=1
-                    if (stable >= 5) & (abs(before_detection-val3)<= 100): # 물건 집었다 다시 놓은 경우.
+                if (stableCheck()== 1): # 변화가 없는 상태.
+                    if (stable >= 5) & (abs(before_detection-val3)<= 200): # 물건 집었다 다시 놓은 경우.
                         break    
-                    if (stable >= 5) & (abs(before_detection-val3)>= 100): # 결제 예정.
+                    if (stable >= 5) & (abs(before_detection-val3)>= 200): # 결제 예정.
                         datas={
                             'val3' : -1
                         }
@@ -81,6 +82,10 @@ while True:
                 else:
                     break
                 val3_before=val3
+        
+        hx3.power_down()
+        hx3.power_up()
+        time.sleep(0.1)
 
     except (KeyboardInterrupt, SystemExit):
         cleanAndExit()

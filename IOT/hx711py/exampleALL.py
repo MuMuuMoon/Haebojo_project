@@ -6,7 +6,8 @@ import requests
 
 EMULATE_HX711=False
 
-global i
+global i, first, before, now
+
 i=0
 
 referenceUnit = 1
@@ -76,16 +77,19 @@ print("Tare done! Add weight now...")
 #hx.tare_A()
 #hx.tare_B()
 
-avg=0
-cnt=0
-val3_min=9999999
-val3_max=-9999999
+# avg=0
+# cnt=0
+# val3_min=9999999
+# val3_max=-9999999
+
 
 while True:
     try:
         #꼼수
         
         global i
+        
+        
         
         # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
         # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
