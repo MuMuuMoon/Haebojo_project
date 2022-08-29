@@ -6,7 +6,7 @@ datas={
     ,'key3' : '219'
 }
 print(type(datas))
-url="http://192.168.123.3:5555/fromLoadcell"
+url="http://192.168.123.2:5555/fromLoadcell"
 
 response = requests.post(url, data=datas)
 print(response.status_code)

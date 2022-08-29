@@ -9,7 +9,7 @@ import multiprocessing as mp
 EMULATE_HX711=False
 
 referenceUnit = 1
-url="http://192.168.123.3:5555/test"
+url="http://192.168.123.2:5555/test"
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
@@ -64,7 +64,7 @@ print("Tare done! Add weight now...")
 
 first=[0,0,0]
 for i in range(0,3):
-    first[i] = round(hx[0].get_weight(5))
+    first[i] = round(hx[i].get_weight(5))
 for i in range(0,3):
     print("초기 물건이 있었을때 first",i+1," 값: " + str(first[i]))
 
