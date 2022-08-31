@@ -1,0 +1,17 @@
+@font-face{
+    font-family: trial;
+    src: url('fonts/Cafe24SsurroundAir.woff2');
+    font-weight: normal;}
+    
+   h1 {font-family:trial; color: rgb(0, 0, 0)}
+   h2 {font-family:trial; color: #a0a0a0}
+
+   @font-face {
+       font-family: font1;
+       src: url('fonts/GmarketSansTTFLight.ttf');
+       font-weight: normal;}
+
+       li {font-family:trial; color: #000000}
+       a {font-family:trial; color: #663333}
+
+   

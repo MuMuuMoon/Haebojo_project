@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="refresh" content="1">
+    <title>HAEBOJO</title>
+<style>
+  *{
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+   #wrapper {
+        width:360px;
+        height:460px;
+        border:2px solid #ccc;
+        background-color: white;
+        text-align: center;
+        border-radius:30px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding-left:10px;
+        padding-right:10px;
+        padding-top:40px;
+        
+   }
+   .back{
+       width: 100vw;
+       height: 100vh;
+       background-image:url('/static/aa.png');
+       background-size:cover;
+       }
+    h1{
+        font-family: font1;
+        font-weight:300;
+        font-size:24px;
+    }
+
+    h2{
+        padding-top:20px;
+        font-weight:100;
+        font-size:22px;
+    }
+    .img{
+        padding-top: 0px;
+    }
+    header{
+        width:100%;
+        height:94px;
+        background-color:#ffffff;
+        box-shadow:0 1px 10px rgb(179, 179, 179);
+        position:fixed;
+        top:0;
+        left:0;
+    }
+    .head{
+        width:1000px;
+    }
+    .row::after{
+      content:'';
+      display:block;
+      clear:both;
+    }
+    .main-nav>li:hover>a{
+      color:#ffad00;
+      padding-bottom:32px;
+      border-bottom:3px solid #ffad00;
+    }
+    li{
+        font-family:'Gmarket Sans';
+    }
+    .row>h3>a{
+        font-family:'Cafe24 Ssurround';
+        color:#663333;
+        font-size:40px;
+        display:inline-block;
+        margin-top:40px;
+        margin-left:28px;
+        line-height:18px;
+    }
+    .row>h3>a:hover{
+        color:#ffad00;
+    }
+    h3,nav{
+      margin-right:500px;
+    }
+    .main-nav>li{
+      margin-right:40px;
+      font-weight:100;
+      display:inline-block;
+      left:0;
+      position:relative;
+    }
+    .main-nav>li>a{
+        font-size:20px;
+        font-weight:100;
+        margin-left:20px;
+    }
+    .main-nav>li>a:hover{
+        font-weight:500;
+    }
+    .main-nav>li:hover .sub-nav{
+      display:block;
+    }
+    .sub-nav{
+      width:600px;
+      position:absolute;
+      left:0;
+      top:68px;
+      display:none;
+    }
+    .sub-nav>li>a{
+        font-family:'Cafe24 Ssurround air';
+        margin-left:10px;
+    }
+    .row>nav{
+        width:50%;
+        display:flex;
+        margin-top:-25px;
+        float:right;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="{{url_for('static', filename='mystyle.css')}}"/> 
+</head> 
+<body>
+    <div class="back"></div>
+    <div id="wrapper">
+        <h1>어서오세요 환영합니다.<br>QR인증을 진행해 주십시오.</h1>
+        <h2>현재QR코드 : {{y}}</h2>
+        <div class="img">
+            <img src="{{ url_for('static', filename=image_file) }}" width="300" height="300">
+        </div>
+    </div>
+    <header>
+      <div class="row">
+          <h3><a href="#">HAEBOJO</a></h3>
+          <nav>
+              <ul class="main-nav">
+                  <li>
+                    <a href="#">김태훈</a>
+                    <ul class="sub-nav">
+                      <li><a href="#">Server / DB</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">정우영</a>
+                    <ul class="sub-nav">
+                      <li><a href="#">OpenCV / PPT</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">이소민</a>
+                    <ul class="sub-nav">
+                      <li><a href="#">LoadCells / RaspberryPi</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">정재경</a>
+                    <ul class="sub-nav">
+                      <li><a href="#">GUI / Design</a></li>
+                    </ul>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+  </header>
+  <section></section>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>데이터베이스 예제 - 장보기 목록</title>
+
+  <style type="text/css">
+	body{ text-align: center; }
+  </style>
+ </head>
+ <body>
+	<h3>임의수정 목록</h3>
+	<h4>추가</h4>
+	<form action = "{{ url_for('addrec') }}" method = "POST">
+		임의컬럼1<br>
+		<input type = "text" name = "indexWeight"></br>
+		임의컬럼2<br>
+		<input type = "text" name = "item" /></br>
+		임의컬럼3<br>
+		<input type = "text" name = "num" /><br>
+		임의컬럼4<br>
+		<input type = "text" name = "price" /><br><br>
+		<input type = "submit" value = "추 가" /><br>
+	</form>
+	<hr>
+	<h4>목록보기</h4>
+	<table border=1 width="600" align="center">
+		<thead>
+		<td>임의컬럼1Person</td>
+		<td>임의컬럼2Weight</td>
+		<td>임의컬럼2</td>
+		<td>임의컬럼3</td>
+		<td>임의컬럼4</td>
+		</thead>
+	{% for row in rows %}
+		<tr>
+			<td>{{ row["indexPerson"] }}</td>
+			<td>{{ row["indexWeight"] }}</td>
+			<td>{{ row["item"] }}</td>
+			<td>{{ row["num"] }}</td>
+			<td>{{ row["price"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+ </body>
+</html>
