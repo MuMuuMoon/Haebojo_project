@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta http-equiv="refresh" content="2">
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>데이터베이스 예제</title>
+
+  <style type="text/css">
+	body{ text-align: center; }
+	table{ border: 5px; border-collapse: collapse; }
+	tr { background-color: #f0f7ff; }
+  </style>
+ </head>
+ <body>
+	<hr>
+
+	<h4>사람테이블 목록</h4>
+
+	<table border="5" width="600" align="center">
+		<thead>
+		<td style="color:Brown" >qrdata(index)</td>
+		<td style="color:SeaGreen">x좌표</td>
+		<td style="color:DarkSlateBlue">y좌표</td>
+		<td style="color:DarkSlateGray">라벨링 번호</td>
+		<td style="color:DarkSlateGray">라벨링 번호</td>
+
+		</thead>
+	{% for row in rows1 %}
+		<tr>
+			<td style="color:Brown">{{ row["indexPerson"] }}</td>
+			<td style="color:SeaGreen">{{ row["item"] }}</td>
+			<td style="color:DarkSlateBlue">{{ row["num"] }}</td>
+			<td style="color:DarkSlateGray">{{ row["price"] }}</td>
+			<td style="color:DarkSlateGray">{{ row["opencvlabel"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+
+ <h4>로드셀테이블 목록 </h4>
+
+	<table border="5" width="600" align="center">
+		<thead>
+		<td style="color:Brown">qrdata(index)</td>
+		<td style="color:SeaGreen">로드셀1무게정보</td>
+		<td style="color:DarkSlateBlue">로드셀2무게정보</td>
+		<td style="color:DarkSlateGray">로드셀3무게정보</td>
+		</thead>
+	{% for row in rows2 %}
+		<tr>
+			<td style="color:Brown">{{ row["indexWeight"] }}</td>
+			<td style="color:SeaGreen">{{ row["item"] }}</td>
+			<td style="color:DarkSlateBlue">{{ row["num"] }}</td>
+			<td style="color:DarkSlateGray">{{ row["price"] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+ </body>
+</html>

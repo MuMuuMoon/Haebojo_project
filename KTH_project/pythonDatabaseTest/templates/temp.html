@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+	<h5 style="color:Brown">index : QR찍고 들어올때 찍힌 번호</h5>
+	<hr/>
+	<h5 style="color:RoyalBlue">로드셀에서 무게변화가 있을때만 물건을 픽업한 손님에 위치가 필요</h5>
+	<h5 style="color:RoyalBlue">따라서 로드셀 인풋값이 있고 난 직후1번만 opencv로부터 받아온 정보 업데이트가능</h5>
+	<h5 style="color:SeaGreen">코드상 필요한 데이터 형식:[ (로드셀1번무게정보), (로드셀2번무게정보), (로드셀3번무게정보)]</h5>
+<h5 style="color:SeaGreen">로드셀로부터 받아온 데이터 값을 아래 인풋값으로 대체</h5>
+	<hr/>
+	<form action= "{{ url_for('outStore') }}" method = "POST">
+	index<br>
+		<input type = "text" name="index" style="border-radius:10px"/>
+		<input type="submit" value="보내기" style="border-radius:10px"/>
+	</form>
+	<hr/>
+	<form action = "{{ url_for('handle_loadcell') }}" method = "POST">
+		index<br>
+		<input type = "text" name = "index" style="border-radius:10px" /></br>
+		loadcell 1번 무게 정보<br>
+		<input type = "text" name = "item" style="border-radius:10px"/></br>
+		loadcell 2번 무게 정보<br>
+		<input type = "text" name = "num" style="border-radius:10px"/><br>
+		loadcell 3번 무게 정보<br>
+		<input type = "text" name = "price" style="border-radius:10px"/><br><br>
+		<input type = "submit" value = "추 가" style="border-radius:10px"/><br>
+	</form>
+	<hr/>
+	<h3 style="color:SeaGreen">코드상 필요한 데이터 형식:[ (x좌표), (y좌표), (라벨링번호) ]</h3>
+<h3 style="color:SeaGreen">opencv로부터 받아온 데이터 값을 아래 인풋값으로 대체</h3>
+	<form action = "{{ url_for('handle_opencv') }}" method = "POST">
+		index<br>
+		<input type = "text" name = "index" style="border-radius:10px"/></br>
+		opencv x좌표<br>
+		<input type = "text" name = "item2" style="border-radius:10px"/></br>
+		opencv y좌표<br>
+		<input type = "text" name = "num2" style="border-radius:10px"/><br>
+		opencv 라벨링번호<br>
+		<input type = "text" name = "price2" style="border-radius:10px"/><br><br>
+		<input type = "submit" value = "추 가" style="border-radius:10px"/><br>
+	</form>
+	<hr/>
+	<form action = "{{ url_for('showdata') }}">
+		<input type="submit" value="테이블 목록 리스트 보기" style="border-radius:10px"/>
+	</form>
+	<hr/>
+	<form action = "{{ url_for('handle_opencv') }}" method = "POST">
+		<input type="submit" value="opencv로 가즈아" style="border-radius:10px"/>
+	</form>
+
+</div>
+</body>
+</html>

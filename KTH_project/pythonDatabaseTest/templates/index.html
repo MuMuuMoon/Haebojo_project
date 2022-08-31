@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="refresh" content="5">
+    <style>
+        body{ text-align: center; }
+    </style>
+    <title>home</title>
+</head>
+<body>
+    <h1 style="color:RoyalBlue">어서오세요 환영합니다. QR인증을 진행해 주십시오.</h1>
+    <h2 style="color:SeaGreen">현재QR코드 : {{y}}</h2>
+<img src="{{ url_for('static', filename=image_file) }}" width="500" height="500">
+</body>
+</html>
