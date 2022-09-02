@@ -3,8 +3,6 @@
 import time
 import sys
 import requests
-from multiprocessing import Pool
-import multiprocessing as mp
 
 EMULATE_HX711=False
 
@@ -21,7 +19,7 @@ bola120=bola*1.2
 errorRange=1000
 referenceUnit = 1
 
-url="http://192.168.123.2:5555/fromLoadcell"
+url="http://192.168.123.7:5555/fromLoadcell"
 
 if not EMULATE_HX711:
     import RPi.GPIO as GPIO
@@ -37,27 +35,6 @@ def cleanAndExit():
         
     print("Bye!")
     sys.exit()
-
-def loadcell(n):
-    now=[0,0,0]
-    weightDiff=[0,0,0]
-    while True:
-        c_proc= mp.current_process()
-        now[n]= round(hx[n].get_weight())
-        weightDiff[n]= abs( abs(first[n]) - abs(now[n]) )
-        print(n+1, ": ", now[n])
-        
-        if( weightDiff[n] >errorRange): # 현재 무게 변화 감지.   
-            if(n+1==1):
-                num["YOGU"]= int (abs( round(hx[n].get_weight()) ) / YOGU80 )
-            if(n+1==2):
-                num["pepsi"]= int (abs( round(hx[n].get_weight()) ) / pepsi80 )
-            if(n+1==3):
-                num["bola"]= int (abs( round(hx[n].get_weight()) ) / bola80 )
-
-            print(stock, num)
-            requests.post(url, data=num) # 서버로 결제 정보 전송.
-            first[n]=now[n]
                                           
 hx= [HX711(4,17), HX711(18,27), HX711(22,23)]
 
@@ -89,13 +66,14 @@ while True:
             "bola" : 0
         }
         
-        p=Pool(3)
-        p.map(loadcell,[0, 1, 2])
-        
-        for i in range(0,3):    
-            hx[i].power_down()
-            hx[i].power_up()
-        time.sleep(0.1)
+        while True:
+            # 로드셀 3개 실시간 갯수 업데이트.
+            num["YOGU"] = int(abs(round(hx[0].get_weight())) / YOGU80)
+            num["pepsi"] = int(abs(round(hx[1].get_weight())) / pepsi80)
+            num["bola"] = int(abs(round(hx[2].get_weight())) / bola80)
+            print(num)
+            
+            requests.post(url, data=num) # 서버로 결제 정보 전송.
 
     except (KeyboardInterrupt, SystemExit):
         cleanAndExit()

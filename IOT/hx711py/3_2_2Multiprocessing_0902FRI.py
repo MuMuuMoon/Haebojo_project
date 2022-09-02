@@ -48,16 +48,21 @@ def loadcell(n):
         print(n+1, ": ", now[n])
         
         if( weightDiff[n] >errorRange): # 현재 무게 변화 감지.   
-            if(n+1==1):
-                num["YOGU"]= int (abs( round(hx[n].get_weight()) ) / YOGU80 )
-            if(n+1==2):
-                num["pepsi"]= int (abs( round(hx[n].get_weight()) ) / pepsi80 )
-            if(n+1==3):
-                num["bola"]= int (abs( round(hx[n].get_weight()) ) / bola80 )
+            # if(n+1==1):
+            #     num["YOGU"]= int (abs( round(hx[n].get_weight()) ) / YOGU80 )
+            # if(n+1==2):
+            #     num["pepsi"]= int (abs( round(hx[n].get_weight()) ) / pepsi80 )
+            # if(n+1==3):
+            #     num["bola"]= int (abs( round(hx[n].get_weight()) ) / bola80 )
+
+            num["YOGU"] = int(abs(round(hx[0].get_weight())) / YOGU80)
+            num["pepsi"] = int(abs(round(hx[1].get_weight())) / pepsi80)
+            num["bola"] = int(abs(round(hx[2].get_weight())) / bola80)
 
             print(stock, num)
             requests.post(url, data=num) # 서버로 결제 정보 전송.
-            first[n]=now[n]
+            for i in range(0,3):
+                first[i]=now[i]
                                           
 hx= [HX711(4,17), HX711(18,27), HX711(22,23)]
 
